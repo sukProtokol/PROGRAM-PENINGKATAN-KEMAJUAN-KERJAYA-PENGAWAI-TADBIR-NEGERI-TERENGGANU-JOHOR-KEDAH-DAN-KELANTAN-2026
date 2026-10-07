@@ -30,6 +30,15 @@
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 15px;
     }
+    /* GAYA UNTUK LOGO */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .logo-container img {
+      max-width: 150px;
+      height: auto;
+    }
     .header h2 {
       margin: 0 0 8px 0;
       color: #1a365d;
@@ -52,14 +61,15 @@
       font-size: 14px;
       color: #2d3748;
     }
-    input[type="text"], input[type="tel"] {
+    input[type="text"], input[type="tel"], select {
       width: 100%;
       padding: 10px 12px;
       border: 1px solid #cbd5e0;
       border-radius: 4px;
       font-size: 14px;
+      background-color: #fff;
     }
-    input[type="text"]:focus, input[type="tel"]:focus {
+    input[type="text"]:focus, input[type="tel"]:focus, select:focus {
       outline: none;
       border-color: #3182ce;
       box-shadow: 0 0 0 3px rgba(66,153,225,0.2);
@@ -118,9 +128,9 @@
       cursor: not-allowed;
     }
 
-    /* REKA BENTUK SKRIN KEJAYAAN (SUCCESS SCREEN) */
+    /* SKRIN KEJAYAAN */
     .success-card {
-      display: none; /* Tersembunyi secara lalai */
+      display: none;
       text-align: center;
       padding: 30px 10px;
     }
@@ -155,33 +165,53 @@
   
   <!-- === 1. BORANG KEHADIRAN === -->
   <div id="formSection">
+    
+    <!-- RUANGAN LOGO DI ATAS HEADER -->
+    <div class="logo-container">
+      <img src="KCS-logo-01.png" alt="Logo Program / Agensi">
+    </div>
+
     <div class="header">
       <h2>Borang Maklum Balas Kehadiran</h2>
-      <p>PROGRAM PENINGKATAN KEMAJUAN KERJAYA PEGAWAI TADBIR NEGERI TAHUN 2026</p>
+      <p>PROGRAM PENINGKATAN KEMAJUAN KERJAYA PEGAWAI TADBIR NEGERI TERENGGANU, JOHOR, KEDAH, KELATAN TAHUN 2026</p>
     </div>
 
     <form id="attendanceForm">
-      <!-- 1. NAMA PEGAWAI -->
+      
+      <!-- 1. DROPDOWN GELARAN -->
       <div class="form-group">
-        <label for="nama">1. Nama Pegawai / Jemputan *</label>
-        <input type="text" id="nama" required placeholder="Contoh: YB Dato' Dr. Ahmad / Tuan Syahrul">
+        <label for="gelaran">1. Gelaran *</label>
+        <select id="gelaran" required>
+          <option value="" disabled selected>-- Pilih Gelaran --</option>
+              <option value="YBhg. Tan Sri">YBhg. Tan Sri</option>
+              <option value="YB Dato' Seri">YB Dato' Seri</option>
+              <option value="YB Dato">YB Dato</option>
+              <option value="YB">YB</option>
+              <option value="YBhg. Datuk">YBhg. Datuk</option>
+              <option value="YBhg. Dato'">YBhg. Dato'</option>
+              <option value="YBhg. Datin">YBhg. Datin</option>
+              <option value="Dr.">Dr.</option>
+              <option value="Encik">Encik</option>
+              <option value="Puan">Puan</option>
+              <option value="Cik">Cik</option>
+        </select>
       </div>
 
-      <!-- 2. JAWATAN -->
+      <!-- 2. NAMA PEGAWAI -->
       <div class="form-group">
-        <label for="jawatan">2. Jawatan *</label>
-        <input type="text" id="jawatan" required placeholder="Contoh: Pegawai Tadbir Negeri / Setiausaha">
+        <label for="nama">2. Nama Pegawai / Jemputan *</label>
+        <input type="text" id="nama" required placeholder="Contoh: Ahmad Bin Abdullah">
       </div>
 
-      <!-- 3. NEGERI  -->
+      <!-- 3. JAWATAN -->
       <div class="form-group">
-        <label for="negeri">3. Negeri *</label>
-        <input type="text" id="negeri" required placeholder="Contoh: Terengganu / Johor / Kedah / Kelantan">
+        <label for="jawatan">3. Jawatan *</label>
+        <input type="text" id="jawatan" required placeholder="Contoh: Penolong Setiausaha Kerajaan">
       </div>
 
       <!-- 4. NOMBOR TELEFON -->
       <div class="form-group">
-        <label for="phone">4. Nombor Telefon Anda *</label>
+        <label for="phone">4. Nombor Telefon *</label>
         <input type="tel" id="phone" required placeholder="Contoh: 0123456789">
       </div>
 
@@ -202,28 +232,13 @@
         </div>
       </div>
 
-      <!-- MAJLIS 2: PENUTUPAN -->
-      <div class="event-card">
-        <div class="event-title">II. MAJLIS PENUTUPAN</div>
-        <div class="event-detail">📅 18 Oktober 2026 (Ahad) | ⏰ 8.30 Pagi | 📍 Dewan Audi MBKT</div>
-        <label>Status Kehadiran: *</label>
-        <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="penutupan" value="Hadir" required> Hadir
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="penutupan" value="Tidak Hadir"> Tidak Hadir
-          </label>
-        </div>
-      </div>
-
       <button type="submit" class="btn-submit" id="btnSubmit">
         <span>📲 HANTAR & BUKA WHATSAPP</span>
       </button>
     </form>
   </div>
 
-  <!-- === 2. PAPARAN SKRIN KEJAYAAN (TANDA RIGHT BESAR) === -->
+  <!-- === 2. PAPARAN SKRIN KEJAYAAN === -->
   <div id="successSection" class="success-card">
     <div class="checkmark-circle">✓</div>
     <h3>Maklumat Anda Telah Didaftarkan!</h3>
@@ -233,14 +248,7 @@
 </div>
 
 <script>
-  // =========================================================================
-  // 1. URL GOOGLE APPS SCRIPT ANDA
-  // =========================================================================
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywwUUaGU6xpHAhIQ8YjFtZHCfSMGiBd7tF8coi5j5b-4heh0uY08FhUvNGVpjzeA/exec"; 
-
-  // =========================================================================
-  // 2. NOMBOR WHATSAPP URUSETIA (Format: 601xxxxxxxx)
-  // =========================================================================
   const NOMBOR_URUSETIA_WA = "60134785436"; 
 
   document.getElementById("attendanceForm").addEventListener("submit", function(e) {
@@ -251,14 +259,13 @@
     submitBtn.innerHTML = "⌛ Memproses & Mengirim...";
 
     // Ambil Data dari Borang
+    const gelaran = document.getElementById("gelaran").value;
     const nama = document.getElementById("nama").value;
     const jawatan = document.getElementById("jawatan").value;
-    const negeri = document.getElementById("negeri").value;
     const phone = document.getElementById("phone").value;
     const perasmian = document.querySelector('input[name="perasmian"]:checked').value;
-    const penutupan = document.querySelector('input[name="penutupan"]:checked').value;
 
-    const formData = { nama, jawatan, negeri, phone, perasmian, penutupan };
+    const formData = { gelaran, nama, jawatan, phone, perasmian };
 
     // A. Hantar data ke Google Sheets
     fetch(GOOGLE_SCRIPT_URL, {
@@ -272,17 +279,15 @@
     const mesejTeks = 
 `*MAKLUM BALAS KEHADIRAN PROGRAM 2026*
 
-*Nama:* ${nama}
+*Nama:* ${gelaran} ${nama}
 *Jawatan:* ${jawatan}
-*Negeri/Agensi:* ${negeri}
 *No Tel:* ${phone}
 
-1. *Majlis Perasmian:* ${perasmian === 'Hadir' ? 'HADIR' : 'TIDAK HADIR'}
-2. *Majlis Penutupan:* ${penutupan === 'Hadir' ? 'HADIR' : 'TIDAK HADIR'}`;
+*Majlis Perasmian:* ${perasmian === 'Hadir' ? 'HADIR' : 'TIDAK HADIR'}`;
 
     const mesejDiencode = encodeURIComponent(mesejTeks);
 
-    // C. TUKAR PAPARAN BORANG KEPADA SKRIN KEJAYAAN (TANDA RIGHT BESAR)
+    // C. Tukar paparan borang kepada Tanda Right Hijau
     document.getElementById("formSection").style.display = "none";
     document.getElementById("successSection").style.display = "block";
 
