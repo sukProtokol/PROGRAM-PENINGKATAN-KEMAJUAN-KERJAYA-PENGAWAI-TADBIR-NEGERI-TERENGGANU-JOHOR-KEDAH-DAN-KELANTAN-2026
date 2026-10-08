@@ -278,9 +278,9 @@
 
         <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
 
-        <!-- MAJLIS PERASMIAN -->
+        <!-- MAJLIS 1: PERASMIAN -->
         <div class="event-card">
-          <div class="event-title">MAJLIS PERASMIAN</div>
+          <div class="event-title">1. MAJLIS PERASMIAN</div>
           <div class="event-detail">📅 18 Oktober 2026 (Ahad) | ⏰ 8.30 Pagi | 📍 Dewan Audi MBKT</div>
           <label style="margin-top: 10px;">Status Kehadiran: *</label>
           <div class="radio-group">
@@ -289,6 +289,21 @@
             </label>
             <label class="radio-option">
               <input type="radio" name="perasmian" value="Tidak Hadir"> Tidak Hadir
+            </label>
+          </div>
+        </div>
+
+        <!-- MAJLIS 2: PENUTUPAN -->
+        <div class="event-card">
+          <div class="event-title">2. MAJLIS PENUTUPAN</div>
+          <div class="event-detail">📅 18 Oktober 2026 (Ahad) | ⏰ 2.30 Petang | 📍 Dewan Audi MBKT</div>
+          <label style="margin-top: 10px;">Status Kehadiran: *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="penutupan" value="Hadir" required> Hadir
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="penutupan" value="Tidak Hadir"> Tidak Hadir
             </label>
           </div>
         </div>
@@ -326,8 +341,9 @@
     const jawatan = document.getElementById("jawatan").value;
     const phone = document.getElementById("phone").value;
     const perasmian = document.querySelector('input[name="perasmian"]:checked').value;
+    const penutupan = document.querySelector('input[name="penutupan"]:checked').value;
 
-    const formData = { gelaran, nama, jawatan, phone, perasmian };
+    const formData = { gelaran, nama, jawatan, phone, perasmian, penutupan };
 
     // A. Hantar data ke Google Sheets
     fetch(GOOGLE_SCRIPT_URL, {
@@ -345,7 +361,8 @@
 *Jawatan:* ${jawatan}
 *No Tel:* ${phone}
 
-*Majlis Perasmian:* ${perasmian === 'Hadir' ? 'HADIR' : 'TIDAK HADIR'}`;
+1. *Majlis Perasmian:* ${perasmian === 'Hadir' ? 'HADIR' : 'TIDAK HADIR'}
+2. *Majlis Penutupan:* ${penutupan === 'Hadir' ? 'HADIR' : 'TIDAK HADIR'}`;
 
     const mesejDiencode = encodeURIComponent(mesejTeks);
 
