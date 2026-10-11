@@ -337,6 +337,31 @@
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywwUUaGU6xpHAhIQ8YjFtZHCfSMGiBd7tF8coi5j5b-4heh0uY08FhUvNGVpjzeA/exec"; 
   const NOMBOR_URUSETIA_WA = "60134785436"; 
 
+  // =========================================================================
+  // SETTING HAD MASA PENUTUPAN BORANG: 13 OKTOBER 2026 (5.00 PETANG)
+  // =========================================================================
+  const TARIKH_TUTUP = new Date("2026-10-13T17:00:00"); 
+
+  // Semak masa semasa apabila halaman dibuka
+  window.addEventListener("DOMContentLoaded", function() {
+    const masaSemasa = new Date();
+
+    if (masaSemasa > TARIKH_TUTUP) {
+      document.getElementById("formSection").innerHTML = `
+        <div style="text-align: center; padding: 50px 20px;">
+          <div style="font-size: 60px; margin-bottom: 15px;">⛔</div>
+          <h2 style="color: #e53e3e; margin-bottom: 10px; font-size: 22px;">Pendaftaran Telah Ditutup</h2>
+          <p style="color: #4a5568; font-size: 15px; line-height: 1.6;">
+            Tarikh akhir maklum balas bagi program ini telah tamat pada<br>
+            <strong>13 Oktober 2026 (5.00 Petang)</strong>.<br><br>
+            Sila hubungi urusetia jika terdapat sebarang pertanyaan.
+          </p>
+        </div>
+      `;
+    }
+  });
+
+  // Logik Hantar Borang
   document.getElementById("attendanceForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -375,7 +400,7 @@
 
     const mesejDiencode = encodeURIComponent(mesejTeks);
 
-    // C. Tukar paparan borang kepada Tanda Right Hijau
+    // C. Tukar paparan borang kepada Skrin Kejayaan
     document.getElementById("formSection").style.display = "none";
     document.getElementById("successSection").style.display = "block";
 
